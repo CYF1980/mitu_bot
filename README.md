@@ -18,12 +18,17 @@ Supports **text chat**, **voice chat**, and **custom domain knowledge ingestion*
 ---
 
 ## 📦 Installation
-
-Clone and install:
-
+#### (If running on Raspberry Pi)
 ```bash
-git clone https://github.com/CYF1980/mitu.git
+sudo apt update
+sudo apt install -y portaudio19-dev libasound2-dev python3-dev
+```
+### Clone and Install
+```bash
+git clone https://github.com/CYF1980/mitu_bot.git
 cd mitu_bot
+python -m venv venv
+source venv/bin/activate
 pip install -e ".[dev]"
 ```
 

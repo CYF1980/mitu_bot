@@ -18,6 +18,7 @@ dependencies = [
 "langchain>=0.2.14",
 "langchain-community>=0.2.12",
 "langchain-openai>=0.2.1",
+"langchain-chroma>=0.2.5",
 "langgraph>=0.2.35",
 "chromadb>=0.5.5",
 "pydantic-settings>=2.4.0",

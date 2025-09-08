@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     llm_model: str = "gpt-4o-mini"
     embed_model: str = "text-embedding-3-large"
     chroma_dir: str = "tmp_context/chromadb"
-    language: Literal["zh", "en", "auto"] = "auto"
+    language: str = "auto" # "en", "zh", or "auto"
     collection: str = "mitu-collection"
     default_prompt_version: str = "EricChoiceUsedCarsPrompt.yml"
     asr_prompt: Optional[str] = ("You are a used car sales assistant.")

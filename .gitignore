@@ -10,3 +10,4 @@ __pycache__/
 venv/
 tmp_context/
 .DS_Store
+mitu_bot.egg-info/
