@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints
+*.ipynb
+.venv/
+.env/
+.vscode/
+.tmp_context/chromadb/
+venv/
+tmp_context/
+.DS_Store
