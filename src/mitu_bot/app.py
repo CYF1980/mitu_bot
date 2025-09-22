@@ -63,10 +63,6 @@ def chat(text: Optional[str] = typer.Option(None, help="If provided, run single-
 
     # Voice chat
     typer.echo("🎙️ Voice chat started. Speak after calibration; Ctrl+C to exit.\n")
-    try:
-        tts_node({"answer_text": settings.greeting_text})
-    except Exception as e:
-        typer.echo(f"[TTS] Greeting failed: {e}")
 
     try:
         while True:

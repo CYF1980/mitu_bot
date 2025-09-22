@@ -8,6 +8,7 @@ from .nodes.tts import tts_node
 from .nodes.guards import ensure_question
 from .nodes.listen import listen_node
 from .nodes.history import store_history_node
+from .nodes.greeting_voice import greeting_node
 
 def build_graph(with_voice: bool = False):
     g = StateGraph(AgentState)
@@ -18,13 +19,25 @@ def build_graph(with_voice: bool = False):
     g.add_node("store_history", store_history_node)
 
     if with_voice:
+        g.add_node("greeting", greeting_node)
         g.add_node("listen", listen_node)
         g.add_node("asr", asr_node)
         g.add_node("tts", tts_node)
+        # a no-op router node to decide whether to greet
+        def _route(state: AgentState) -> AgentState:
+            return state
+        g.add_node("route_greeting", _route)
 
     # Edges
     if with_voice:
-        g.add_edge(START, "listen")
+        # Start -> route; if not greeted, go greeting; else go listen
+        g.add_edge(START, "route_greeting")
+        g.add_conditional_edges(
+            "route_greeting",
+            lambda s: "first" if not s.get("has_greeted") else "again",
+            {"first": "greeting", "again": "listen"},
+        )
+        g.add_edge("greeting", "listen")
         g.add_edge("listen", "asr")
         g.add_edge("asr", "ensure_question")
     else:

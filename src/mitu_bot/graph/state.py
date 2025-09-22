@@ -16,3 +16,4 @@ class AgentState(TypedDict, total=False):
 
     # Chat history for LLM (messages with role/content)
     messages: Annotated[list[AnyMessage], add_messages]
+    has_greeted: Optional[bool]
